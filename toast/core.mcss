@@ -1,0 +1,91 @@
+// Variables
+// ========================================================================
+
+$m-toast_z-index ?= 1040;
+$m-toast_position ?= 10px;
+$m-toast_width ?= 320px;
+
+// Component:       `m-toast`
+// ========================================================================
+
+.m-toast {
+    $box-sizing: border-box;
+    position: fixed;
+
+    z-index: $m-toast_z-index;
+    top: $m-toast_position;
+    left: $m-toast_position;
+    width: $m-toast_width;
+
+    .toast_item {
+        padding: 15px;
+        background: #444;
+        color: white;
+        $border: #444;
+        $border-radius: $border-radius-base;
+
+        margin-bottom: 10px;
+    }
+
+    .toast_close {
+        float: right;
+
+        &:hover {}
+    }
+}
+
+
+
+// Position Extend:
+// Description:     位置扩展
+// ========================================================================
+
+.m-toast-top-right,
+.m-toast-bottom-right  {
+    left: auto;
+    right: $m-toast_position;
+}
+
+.m-toast-top-center,
+.m-toast-bottom-center {
+    left: 50%;
+    margin-left: ($m-toast_width / -2);
+}
+
+.m-toast-bottom-left,
+.m-toast-bottom-right,
+.m-toast-bottom-center {
+    top: auto;
+    bottom: $m-toast_position;
+}
+
+/* Responsive */
+@media (max-width: $media-sm-max-width) {
+    // - Fit in small screen
+    .m-toast {
+        left: $m-toast_position;
+        right: $m-toast_position;
+        width: auto;
+        margin: 0;
+    }
+}
+
+/* Static */
+.m-toast-static {
+    position: static;
+    width: auto;
+}
+
+
+
+// Color Extend:
+// Description:     颜色扩展
+// ========================================================================
+
+$m-toast_item-extend_color = ($name, $background, $color = null, $border_ = null) {
+    .m-toast .toast_item-#{$name} {
+        background: $background;
+        @if($color) { color: $color; }
+        @if($border_) { $border: $border_; }
+    }
+}
