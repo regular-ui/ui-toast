@@ -1,15 +1,15 @@
 {
   "name": "rgui-ui-toast",
-  "description": "Regular UI - Toast",
-  "version": "0.2.0-alpha",
+  "description": "Regular UI - Toast, Notify",
+  "version": "0.2.0-alpha.1",
   "author": "Rainfore <rainforest92@126.com>",
   "main": "./index.js",
   "repository": "regular-ui/ui-toast",
   "homepage": "http://regular-ui.github.io",
   "bugs": {"url": "http://github.com/regular-ui/ui-toast/issues"},
   "license": "MIT",
-  "keywords": ["regular", "ui", "rgui", "toast"],
-  "tags": ["regular", "ui", "rgui", "toast"],
+  "keywords": ["regular", "ui", "rgui", "toast", "notify"],
+  "tags": ["regular", "ui", "rgui", "toast", "notify"],
   "dependencies": {
     "rgui-ui-base": "^0.2.0-alpha.5"
   },

@@ -1,1 +1,2 @@
 @import './toast/index.mcss';
+@import './notify/index.mcss';

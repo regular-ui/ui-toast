@@ -5,7 +5,7 @@ import template from './index.rgl';
  * @class Toast
  * @extend Component
  * @param {object}                  options.data                     =  绑定属性
- * @param {string='top-center'}     options.data.position            => 通知的位置，可选参数：`top-center`、`top-left`、`top-right`、`bottom-center`、`bottom-left`、`bottom-right`、`static`
+ * @param {string='top-center'}     options.data.position            => 消息提示的位置，可选参数：`top-center`、`top-left`、`top-right`、`bottom-center`、`bottom-left`、`bottom-right`、`static`
  * @param {number=2000}             options.data.duration            => 每条消息默认的停留毫秒数，如果为0，则表示消息常驻不消失。
  * @param {boolean=false}           options.data.single              => 是否始终显示一条
  * @param {boolean=true}            options.data.visible             => 是否显示
@@ -48,11 +48,20 @@ const Toast = Component.extend({
      * @return {object} item 返回弹出的消息项
      */
     show(text, duration, state) {
-        let item = {
+        return this._show({
             text,
             state,
             duration: +(duration >= 0 ? duration : this.data.duration),
-        };
+        });
+    },
+    /**
+     * @method show(item) 弹出一个消息
+     * @protected
+     * @param  {Item} item 消息项
+     * @return {object} item 返回弹出的消息项
+     * @comment 暂不考虑直接传对象的方法
+     */
+    _show(item) {
         const list = this.data.list;
 
         if (this.data.single && list[0]) {
@@ -120,7 +129,7 @@ const Toast = Component.extend({
     },
 });
 
-const STATES = ['success', 'warning', 'info', 'error'];
+const STATES = Toast.STATES = ['success', 'warning', 'info', 'error'];
 /**
  * @method [info|success|warning|error](text[,duration]) 弹出特殊类型的消息。为show方法的简写方式。
  * @public

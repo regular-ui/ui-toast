@@ -1,4 +1,4 @@
-全局消息提示，能够自动淡出。
+全局通知，能够自动淡出。
 
 ## 示例
 ### 基本形式
@@ -6,14 +6,14 @@
 <div class="m-example"></div>
 
 ```xml
-<button class="u-btn u-btn-primary" on-click={this.show()}>Toast</button>
+<button class="u-btn u-btn-primary" on-click={this.show()}>Notify</button>
 ```
 
 ```javascript
 let component = new RGUI.Component({
     template,
     show() {
-        RGUI.Toast.show('a message');
+        RGUI.Notify.show('This is a message.', 'Notify');
     },
 });
 ```
@@ -33,7 +33,7 @@ let component = new RGUI.Component({
 let component = new RGUI.Component({
     template,
     show(state) {
-        RGUI.Toast[state](state + ' message');
+        RGUI.Notify[state](state + ' message', 'Notify', 0);
     },
 });
 ```
@@ -55,45 +55,45 @@ let component = new RGUI.Component({
 let component = new RGUI.Component({
     template,
     config() {
-        this.toasts = [
-            new RGUI.Toast({ data: { position: 'top-center' } }),
-            new RGUI.Toast({ data: { position: 'top-left' } }),
-            new RGUI.Toast({ data: { position: 'top-right' } }),
-            new RGUI.Toast({ data: { position: 'bottom-center' } }),
-            new RGUI.Toast({ data: { position: 'bottom-left' } }),
-            new RGUI.Toast({ data: { position: 'bottom-right' } }),
+        this.notifys = [
+            new RGUI.Notify({ data: { position: 'top-center' } }),
+            new RGUI.Notify({ data: { position: 'top-left' } }),
+            new RGUI.Notify({ data: { position: 'top-right' } }),
+            new RGUI.Notify({ data: { position: 'bottom-center' } }),
+            new RGUI.Notify({ data: { position: 'bottom-left' } }),
+            new RGUI.Notify({ data: { position: 'bottom-right' } }),
         ];
     },
     show(index) {
-        var toast = this.toasts[index];
-        toast.show('position: ' + toast.data.position);
+        var notify = this.notifys[index];
+        notify.show('position: ' + notify.data.position);
     },
 });
 ```
 
 ### 嵌入文档流
 
-上面的模式toast都是以`fixed`的形式固定在浏览器中，也可以将Toast嵌入文档流。先将toast注入到需要的位置，然后设置toast的`position="static"`。
+上面的模式notify都是以`fixed`的形式固定在浏览器中，也可以将Notify嵌入文档流。先将notify注入到需要的位置，然后设置notify的`position="static"`。
 
 <div class="m-example"></div>
 
 ```xml
 <button class="u-btn u-btn-primary" on-click={this.show()}>static</button>
-<toast ref="toast" position="static" duration="0" />
+<notify ref="notify" position="static" duration="0" />
 ```
 
 ```javascript
 let component = new RGUI.Component({
     template,
     show() {
-        this.$refs.toast.show('static toast');
+        this.$refs.notify.show('static notify');
     },
 });
 ```
 
 ### 消息停留时间
 
-可以通过设置toast的`duration`参数设置所有消息的停留时间，也可以在`show`的时候单独设置该条消息的停留时间，单位为毫秒。
+可以通过设置notify的`duration`参数设置所有消息的停留时间，也可以在`show`的时候单独设置该条消息的停留时间，单位为毫秒。
 
 <div class="m-example"></div>
 
@@ -108,14 +108,14 @@ let component = new RGUI.Component({
 let component = new RGUI.Component({
     template,
     show(duration) {
-        RGUI.Toast.show('duration: ' + duration + ' ms', duration);
+        RGUI.Notify.show('duration: ' + duration + ' ms', duration);
     },
 });
 ```
 
 ### 始终显示一条
 
-将`single`设置为`true`，可以让toast始终只显示一条消息。
+将`single`设置为`true`，可以让notify始终只显示一条消息。
 
 <div class="m-example"></div>
 
@@ -130,11 +130,11 @@ let component = new RGUI.Component({
 let component = new RGUI.Component({
     template,
     config() {
-        this.toast = new RGUI.Toast({ data: {single: true} });
+        this.notify = new RGUI.Notify({ data: {single: true} });
     },
     number: 1,
     show: function(state) {
-        this.toast[state]('message ' + this.number);
+        this.notify[state]('message ' + this.number);
         this.number++;
     }
 });

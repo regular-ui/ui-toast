@@ -1,0 +1,11 @@
+<div class="m-notify m-notify-{position} {class}" r-hide={!visible}>
+    {#list list as item}
+    <div class="notify_item notify_item-{item.state}" r-animation={animation}>
+        <a class="notify_close" on-click={this.close(item)}></a>
+        {#if item.title}<div class="notify_hd">{item.title}</div>{/if}
+        <div class="notify_bd">
+            {item.content}
+        </div>
+    </div>
+    {/list}
+</div>

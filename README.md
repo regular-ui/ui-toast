@@ -1,6 +1,6 @@
 # ui-toast
 
-Regular UI - Toast
+Regular UI - Toast, Notify
 
 [![NPM Version][npm-img]][npm-url]
 [![Build Status][travis-img]][travis-url]
@@ -22,6 +22,10 @@ Regular UI - Toast
 ## Toast（消息提示）
 
 - 基础示例+进阶案例+API: https://regular-ui.github.io/ui-toast/toast/index.html
+
+## Notify（通知）
+
+- 基础示例+进阶案例+API: https://regular-ui.github.io/ui-toast/notify/index.html
 
 ## Copyright and License
 

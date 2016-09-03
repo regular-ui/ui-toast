@@ -4,6 +4,21 @@
 // ========================================================================
 
 .m-toast {
+    .toast_item {
+        padding: 15px;
+        background: #444;
+        color: white;
+        $border: #444;
+        $border-radius: $border-radius-base;
+
+        &:before {
+            @extend .u-icon;
+            font-size: 20px;
+            line-height: 1;
+            vertical-align: middle;
+        }
+    }
+
     .toast_close {
         color: inherit;
         opacity: .7;
@@ -11,13 +26,6 @@
         &:hover { opacity: 1; }
 
         &:before { @extend .u-icon; @extend .u-icon-close:before; }
-    }
-
-    .toast_item:before {
-        @extend .u-icon;
-        font-size: 20px;
-        line-height: 1;
-        vertical-align: middle;
     }
 }
 
