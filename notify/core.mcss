@@ -79,9 +79,13 @@ $m-notify_width ?= 320px;
 // ========================================================================
 
 $m-notify_item-extend_color = ($name, $background, $color = null, $border_ = null) {
-    .m-notify .notify_item-#{$name} .notify_hd {
-        background: $background;
-        @if($color) { color: $color; }
-        @if($border_) { $border: $border_; }
+    .m-notify .notify_item-#{$name} {
+        @if($border_) { border-color: $border_; }
+
+        .notify_hd {
+            background: $background;
+            @if($color) { color: $color; }
+            @if($border_) { border-bottom-color: $border_; }
+        }
     }
 }

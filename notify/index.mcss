@@ -45,13 +45,26 @@
 // Color Extends:
 // ========================================================================
 
+$m-notify_item-extend_color = ($name, $background, $color = null, $border_ = null) {
+    .m-notify .notify_item-#{$name} {
+        @if($border_) { border-color: $border_; }
+
+        .notify_hd {
+            background: $background;
+            @if($color) { color: $color; }
+            @if($border_) { border-bottom-color: $border_; }
+        }
+
+        .notify_close {
+            color: white;
+            opacity: .7;
+
+            &:hover { opacity: 1; }
+        }
+    }
+}
+
 $m-notify_item-extend_color(info, $brand-info, white, $brand-info-darker);
 $m-notify_item-extend_color(success, $brand-success, white, $brand-success-darker);
 $m-notify_item-extend_color(warning, $brand-warning, white, $brand-warning-darker);
 $m-notify_item-extend_color(error, $brand-error, white, $brand-error-darker);
-
-// mcss有bug
-.m-notify .notify_item-info .notify_bd:before { @extend .u-icon-info-circle:before; color: $brand-info; }
-.m-notify .notify_item-success .notify_bd:before { @extend .u-icon-success-circle:before;  color: $brand-success; }
-.m-notify .notify_item-warning .notify_bd:before { @extend .u-icon-warning-circle:before;  color: $brand-warning; }
-.m-notify .notify_item-error .notify_bd:before { @extend .u-icon-error-circle:before; color: $brand-error; }

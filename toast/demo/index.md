@@ -73,12 +73,12 @@ let component = new RGUI.Component({
 
 ### 嵌入文档流
 
-上面的模式toast都是以`fixed`的形式固定在浏览器中，也可以将Toast嵌入文档流。先将toast注入到需要的位置，然后设置toast的`position="static"`。
+上面的toast都是以`fixed`的形式固定在浏览器中，也可以将Toast嵌入文档流。先将toast注入到需要的位置，然后设置toast的`position="static"`。
 
 <div class="m-example"></div>
 
 ```xml
-<button class="u-btn u-btn-primary" on-click={this.show()}>static</button>
+<p><button class="u-btn u-btn-primary" on-click={this.show()}>static</button></p>
 <toast ref="toast" position="static" duration="0" />
 ```
 

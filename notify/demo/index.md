@@ -1,4 +1,4 @@
-全局通知，能够自动淡出。
+全局通知，作为[消息提示](../toast/index.html)的增强版，能够自动淡出。
 
 ## 示例
 ### 基本形式
@@ -6,7 +6,8 @@
 <div class="m-example"></div>
 
 ```xml
-<button class="u-btn u-btn-primary" on-click={this.show()}>Notify</button>
+<button class="u-btn" on-click={this.show()}>Default</button>
+<button class="u-btn" on-click={this.showWithoutTitle()}>Without Title</button>
 ```
 
 ```javascript
@@ -14,6 +15,9 @@ let component = new RGUI.Component({
     template,
     show() {
         RGUI.Notify.show('This is a message.', 'Notify');
+    },
+    showWithoutTitle() {
+        RGUI.Notify.show('This is a message without title.');
     },
 });
 ```
@@ -33,7 +37,7 @@ let component = new RGUI.Component({
 let component = new RGUI.Component({
     template,
     show(state) {
-        RGUI.Notify[state](state + ' message', 'Notify', 0);
+        RGUI.Notify[state](state + ' message', 'Notify');
     },
 });
 ```
@@ -55,7 +59,7 @@ let component = new RGUI.Component({
 let component = new RGUI.Component({
     template,
     config() {
-        this.notifys = [
+        this.notifies = [
             new RGUI.Notify({ data: { position: 'top-center' } }),
             new RGUI.Notify({ data: { position: 'top-left' } }),
             new RGUI.Notify({ data: { position: 'top-right' } }),
@@ -65,20 +69,20 @@ let component = new RGUI.Component({
         ];
     },
     show(index) {
-        var notify = this.notifys[index];
-        notify.show('position: ' + notify.data.position);
+        var notify = this.notifies[index];
+        notify.show('position: ' + notify.data.position, 'Notify');
     },
 });
 ```
 
 ### 嵌入文档流
 
-上面的模式notify都是以`fixed`的形式固定在浏览器中，也可以将Notify嵌入文档流。先将notify注入到需要的位置，然后设置notify的`position="static"`。
+上面的notify都是以`fixed`的形式固定在浏览器中，也可以将Notify嵌入文档流。先将notify注入到需要的位置，然后设置notify的`position="static"`。
 
 <div class="m-example"></div>
 
 ```xml
-<button class="u-btn u-btn-primary" on-click={this.show()}>static</button>
+<p><button class="u-btn u-btn-primary" on-click={this.show()}>static</button></p>
 <notify ref="notify" position="static" duration="0" />
 ```
 
@@ -108,7 +112,7 @@ let component = new RGUI.Component({
 let component = new RGUI.Component({
     template,
     show(duration) {
-        RGUI.Notify.show('duration: ' + duration + ' ms', duration);
+        RGUI.Notify.show('duration: ' + duration + ' ms', 'Notify', duration);
     },
 });
 ```
@@ -134,7 +138,7 @@ let component = new RGUI.Component({
     },
     number: 1,
     show: function(state) {
-        this.notify[state]('message ' + this.number);
+        this.notify[state]('message ' + this.number, 'Notify');
         this.number++;
     }
 });
