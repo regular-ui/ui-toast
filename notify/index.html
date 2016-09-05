@@ -3,7 +3,7 @@
 <head>
 <!-- 该文件由rgui-tools自动生成 -->
 <meta charset="utf-8">
-<title>Regular UI - Toast</title>
+<title>Regular UI - Notify</title>
 <meta name="author" content="Rainfore">
 <meta name="keywords" content="Regular,UI,JavaScript,Framework,MVC,MVVM">
 <meta name="description" content="Regular UI">
@@ -34,18 +34,22 @@
 </div>
 <div class="g-bd"><div class="g-bdc"><div class="g-mn g-mn-center">
     <article class="m-article">
-        <h1>消息提示<small> Toast</small></h1>
-        <p>全局消息提示，能够自动淡出。</p>
+        <h1>通知<small> Notify</small></h1>
+        <p>全局通知，作为<a href="../toast/index.html">消息提示</a>的增强版，能够自动淡出。</p>
 <h2 id="示例">示例</h2>
 <h3 id="基本形式">基本形式</h3>
 <div class="m-example"></div>
 
-<pre class="lang-xml"><code><span class="cm-tagcm-bracket">&lt;</span><span class="cm-tag">button</span> <span class="cm-attribute">class</span>=<span class="cm-string">&quot;u-btn u-btn-primary&quot;</span> <span class="cm-attribute">on-click</span>=<span class="cm-attribute">{this.show()}</span><span class="cm-tagcm-bracketcm-error">&gt;</span>Toast<span class="cm-tagcm-bracket">&lt;/</span><span class="cm-tag">button</span><span class="cm-tagcm-bracket">&gt;</span>
+<pre class="lang-xml"><code><span class="cm-tagcm-bracket">&lt;</span><span class="cm-tag">button</span> <span class="cm-attribute">class</span>=<span class="cm-string">&quot;u-btn&quot;</span> <span class="cm-attribute">on-click</span>=<span class="cm-attribute">{this.show()}</span><span class="cm-tagcm-bracketcm-error">&gt;</span>Default<span class="cm-tagcm-bracket">&lt;/</span><span class="cm-tag">button</span><span class="cm-tagcm-bracket">&gt;</span>
+<span class="cm-tagcm-bracket">&lt;</span><span class="cm-tag">button</span> <span class="cm-attribute">class</span>=<span class="cm-string">&quot;u-btn&quot;</span> <span class="cm-attribute">on-click</span>=<span class="cm-attribute">{this.showWithoutTitle()}</span><span class="cm-tagcm-bracketcm-error">&gt;</span>Without Title<span class="cm-tagcm-bracket">&lt;/</span><span class="cm-tag">button</span><span class="cm-tagcm-bracket">&gt;</span>
 </code></pre>
 <pre class="lang-javascript"><code><span class="cm-keyword">let</span> <span class="cm-variable">component</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">RGUI</span>.<span class="cm-property">Component</span>({
     <span class="cm-property">template</span>,
     <span class="cm-property">show</span>() {
-        <span class="cm-variable">RGUI</span>.<span class="cm-property">Toast</span>.<span class="cm-property">show</span>(<span class="cm-string">&#39;a message&#39;</span>);
+        <span class="cm-variable">RGUI</span>.<span class="cm-property">Notify</span>.<span class="cm-property">show</span>(<span class="cm-string">&#39;This is a message.&#39;</span>, <span class="cm-string">&#39;Notify&#39;</span>);
+    },
+    <span class="cm-property">showWithoutTitle</span>() {
+        <span class="cm-variable">RGUI</span>.<span class="cm-property">Notify</span>.<span class="cm-property">show</span>(<span class="cm-string">&#39;This is a message without title.&#39;</span>);
     },
 });
 </code></pre>
@@ -60,7 +64,7 @@
 <pre class="lang-javascript"><code><span class="cm-keyword">let</span> <span class="cm-variable">component</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">RGUI</span>.<span class="cm-property">Component</span>({
     <span class="cm-property">template</span>,
     <span class="cm-property">show</span>(<span class="cm-def">state</span>) {
-        <span class="cm-variable">RGUI</span>.<span class="cm-property">Toast</span>[<span class="cm-variable-2">state</span>](<span class="cm-variable-2">state</span> <span class="cm-operator">+</span> <span class="cm-string">&#39; message&#39;</span>);
+        <span class="cm-variable">RGUI</span>.<span class="cm-property">Notify</span>[<span class="cm-variable-2">state</span>](<span class="cm-variable-2">state</span> <span class="cm-operator">+</span> <span class="cm-string">&#39; message&#39;</span>, <span class="cm-string">&#39;Notify&#39;</span>);
     },
 });
 </code></pre>
@@ -77,37 +81,37 @@
 <pre class="lang-javascript"><code><span class="cm-keyword">let</span> <span class="cm-variable">component</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">RGUI</span>.<span class="cm-property">Component</span>({
     <span class="cm-property">template</span>,
     <span class="cm-property">config</span>() {
-        <span class="cm-keyword">this</span>.<span class="cm-property">toasts</span> <span class="cm-operator">=</span> [
-            <span class="cm-keyword">new</span> <span class="cm-variable">RGUI</span>.<span class="cm-property">Toast</span>({ <span class="cm-property">data</span>: { <span class="cm-property">position</span>: <span class="cm-string">&#39;top-center&#39;</span> } }),
-            <span class="cm-keyword">new</span> <span class="cm-variable">RGUI</span>.<span class="cm-property">Toast</span>({ <span class="cm-property">data</span>: { <span class="cm-property">position</span>: <span class="cm-string">&#39;top-left&#39;</span> } }),
-            <span class="cm-keyword">new</span> <span class="cm-variable">RGUI</span>.<span class="cm-property">Toast</span>({ <span class="cm-property">data</span>: { <span class="cm-property">position</span>: <span class="cm-string">&#39;top-right&#39;</span> } }),
-            <span class="cm-keyword">new</span> <span class="cm-variable">RGUI</span>.<span class="cm-property">Toast</span>({ <span class="cm-property">data</span>: { <span class="cm-property">position</span>: <span class="cm-string">&#39;bottom-center&#39;</span> } }),
-            <span class="cm-keyword">new</span> <span class="cm-variable">RGUI</span>.<span class="cm-property">Toast</span>({ <span class="cm-property">data</span>: { <span class="cm-property">position</span>: <span class="cm-string">&#39;bottom-left&#39;</span> } }),
-            <span class="cm-keyword">new</span> <span class="cm-variable">RGUI</span>.<span class="cm-property">Toast</span>({ <span class="cm-property">data</span>: { <span class="cm-property">position</span>: <span class="cm-string">&#39;bottom-right&#39;</span> } }),
+        <span class="cm-keyword">this</span>.<span class="cm-property">notifies</span> <span class="cm-operator">=</span> [
+            <span class="cm-keyword">new</span> <span class="cm-variable">RGUI</span>.<span class="cm-property">Notify</span>({ <span class="cm-property">data</span>: { <span class="cm-property">position</span>: <span class="cm-string">&#39;top-center&#39;</span> } }),
+            <span class="cm-keyword">new</span> <span class="cm-variable">RGUI</span>.<span class="cm-property">Notify</span>({ <span class="cm-property">data</span>: { <span class="cm-property">position</span>: <span class="cm-string">&#39;top-left&#39;</span> } }),
+            <span class="cm-keyword">new</span> <span class="cm-variable">RGUI</span>.<span class="cm-property">Notify</span>({ <span class="cm-property">data</span>: { <span class="cm-property">position</span>: <span class="cm-string">&#39;top-right&#39;</span> } }),
+            <span class="cm-keyword">new</span> <span class="cm-variable">RGUI</span>.<span class="cm-property">Notify</span>({ <span class="cm-property">data</span>: { <span class="cm-property">position</span>: <span class="cm-string">&#39;bottom-center&#39;</span> } }),
+            <span class="cm-keyword">new</span> <span class="cm-variable">RGUI</span>.<span class="cm-property">Notify</span>({ <span class="cm-property">data</span>: { <span class="cm-property">position</span>: <span class="cm-string">&#39;bottom-left&#39;</span> } }),
+            <span class="cm-keyword">new</span> <span class="cm-variable">RGUI</span>.<span class="cm-property">Notify</span>({ <span class="cm-property">data</span>: { <span class="cm-property">position</span>: <span class="cm-string">&#39;bottom-right&#39;</span> } }),
         ];
     },
     <span class="cm-variable">show</span>(<span class="cm-variable">index</span>) {
-        <span class="cm-keyword">var</span> <span class="cm-variable">toast</span> <span class="cm-operator">=</span> <span class="cm-keyword">this</span>.<span class="cm-variable">toasts</span>[<span class="cm-variable">index</span>];
-        <span class="cm-variable">toast</span>.<span class="cm-property">show</span>(<span class="cm-string">&#39;position: &#39;</span> <span class="cm-operator">+</span> <span class="cm-variable">toast</span>.<span class="cm-property">data</span>.<span class="cm-property">position</span>);
+        <span class="cm-keyword">var</span> <span class="cm-variable">notify</span> <span class="cm-operator">=</span> <span class="cm-keyword">this</span>.<span class="cm-variable">notifies</span>[<span class="cm-variable">index</span>];
+        <span class="cm-variable">notify</span>.<span class="cm-property">show</span>(<span class="cm-string">&#39;position: &#39;</span> <span class="cm-operator">+</span> <span class="cm-variable">notify</span>.<span class="cm-property">data</span>.<span class="cm-property">position</span>, <span class="cm-string">&#39;Notify&#39;</span>);
     },
 });
 </code></pre>
 <h3 id="嵌入文档流">嵌入文档流</h3>
-<p>上面的toast都是以<code>fixed</code>的形式固定在浏览器中，也可以将Toast嵌入文档流。先将toast注入到需要的位置，然后设置toast的<code>position=&quot;static&quot;</code>。</p>
+<p>上面的notify都是以<code>fixed</code>的形式固定在浏览器中，也可以将Notify嵌入文档流。先将notify注入到需要的位置，然后设置notify的<code>position=&quot;static&quot;</code>。</p>
 <div class="m-example"></div>
 
 <pre class="lang-xml"><code><span class="cm-tagcm-bracket">&lt;</span><span class="cm-tag">p</span><span class="cm-tagcm-bracket">&gt;</span><span class="cm-tagcm-bracket">&lt;</span><span class="cm-tag">button</span> <span class="cm-attribute">class</span>=<span class="cm-string">&quot;u-btn u-btn-primary&quot;</span> <span class="cm-attribute">on-click</span>=<span class="cm-attribute">{this.show()}</span><span class="cm-tagcm-bracketcm-error">&gt;</span>static<span class="cm-tagcm-bracket">&lt;/</span><span class="cm-tag">button</span><span class="cm-tagcm-bracket">&gt;</span><span class="cm-tagcm-bracket">&lt;/</span><span class="cm-tag">p</span><span class="cm-tagcm-bracket">&gt;</span>
-<span class="cm-tagcm-bracket">&lt;</span><span class="cm-tag">toast</span> <span class="cm-attribute">ref</span>=<span class="cm-string">&quot;toast&quot;</span> <span class="cm-attribute">position</span>=<span class="cm-string">&quot;static&quot;</span> <span class="cm-attribute">duration</span>=<span class="cm-string">&quot;0&quot;</span> <span class="cm-tagcm-bracket">/&gt;</span>
+<span class="cm-tagcm-bracket">&lt;</span><span class="cm-tag">notify</span> <span class="cm-attribute">ref</span>=<span class="cm-string">&quot;notify&quot;</span> <span class="cm-attribute">position</span>=<span class="cm-string">&quot;static&quot;</span> <span class="cm-attribute">duration</span>=<span class="cm-string">&quot;0&quot;</span> <span class="cm-tagcm-bracket">/&gt;</span>
 </code></pre>
 <pre class="lang-javascript"><code><span class="cm-keyword">let</span> <span class="cm-variable">component</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">RGUI</span>.<span class="cm-property">Component</span>({
     <span class="cm-property">template</span>,
     <span class="cm-property">show</span>() {
-        <span class="cm-keyword">this</span>.<span class="cm-property">$refs</span>.<span class="cm-property">toast</span>.<span class="cm-property">show</span>(<span class="cm-string">&#39;static toast&#39;</span>);
+        <span class="cm-keyword">this</span>.<span class="cm-property">$refs</span>.<span class="cm-property">notify</span>.<span class="cm-property">show</span>(<span class="cm-string">&#39;static notify&#39;</span>);
     },
 });
 </code></pre>
 <h3 id="消息停留时间">消息停留时间</h3>
-<p>可以通过设置toast的<code>duration</code>参数设置所有消息的停留时间，也可以在<code>show</code>的时候单独设置该条消息的停留时间，单位为毫秒。</p>
+<p>可以通过设置notify的<code>duration</code>参数设置所有消息的停留时间，也可以在<code>show</code>的时候单独设置该条消息的停留时间，单位为毫秒。</p>
 <div class="m-example"></div>
 
 <pre class="lang-xml"><code><span class="cm-tagcm-bracket">&lt;</span><span class="cm-tag">button</span> <span class="cm-attribute">class</span>=<span class="cm-string">&quot;u-btn&quot;</span> <span class="cm-attribute">on-click</span>=<span class="cm-attribute">{this.show(500)}</span><span class="cm-tagcm-bracketcm-error">&gt;</span>0.5s<span class="cm-tagcm-bracket">&lt;/</span><span class="cm-tag">button</span><span class="cm-tagcm-bracket">&gt;</span>
@@ -118,12 +122,12 @@
 <pre class="lang-javascript"><code><span class="cm-keyword">let</span> <span class="cm-variable">component</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">RGUI</span>.<span class="cm-property">Component</span>({
     <span class="cm-property">template</span>,
     <span class="cm-property">show</span>(<span class="cm-def">duration</span>) {
-        <span class="cm-variable">RGUI</span>.<span class="cm-property">Toast</span>.<span class="cm-property">show</span>(<span class="cm-string">&#39;duration: &#39;</span> <span class="cm-operator">+</span> <span class="cm-variable-2">duration</span> <span class="cm-operator">+</span> <span class="cm-string">&#39; ms&#39;</span>, <span class="cm-variable-2">duration</span>);
+        <span class="cm-variable">RGUI</span>.<span class="cm-property">Notify</span>.<span class="cm-property">show</span>(<span class="cm-string">&#39;duration: &#39;</span> <span class="cm-operator">+</span> <span class="cm-variable-2">duration</span> <span class="cm-operator">+</span> <span class="cm-string">&#39; ms&#39;</span>, <span class="cm-string">&#39;Notify&#39;</span>, <span class="cm-variable-2">duration</span>);
     },
 });
 </code></pre>
 <h3 id="始终显示一条">始终显示一条</h3>
-<p>将<code>single</code>设置为<code>true</code>，可以让toast始终只显示一条消息。</p>
+<p>将<code>single</code>设置为<code>true</code>，可以让notify始终只显示一条消息。</p>
 <div class="m-example"></div>
 
 <pre class="lang-xml"><code><span class="cm-tagcm-bracket">&lt;</span><span class="cm-tag">button</span> <span class="cm-attribute">class</span>=<span class="cm-string">&quot;u-btn u-btn-info&quot;</span> <span class="cm-attribute">on-click</span>=<span class="cm-attribute">{this.show(</span><span class="cm-stringcm-error">&#39;info&#39;</span><span class="cm-attribute">)}</span><span class="cm-tagcm-bracketcm-error">&gt;</span>Info<span class="cm-tagcm-bracket">&lt;/</span><span class="cm-tag">button</span><span class="cm-tagcm-bracket">&gt;</span>
@@ -134,11 +138,11 @@
 <pre class="lang-javascript"><code><span class="cm-keyword">let</span> <span class="cm-variable">component</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">RGUI</span>.<span class="cm-property">Component</span>({
     <span class="cm-property">template</span>,
     <span class="cm-property">config</span>() {
-        <span class="cm-keyword">this</span>.<span class="cm-property">toast</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">RGUI</span>.<span class="cm-property">Toast</span>({ <span class="cm-property">data</span>: {<span class="cm-property">single</span>: <span class="cm-atom">true</span>} });
+        <span class="cm-keyword">this</span>.<span class="cm-property">notify</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">RGUI</span>.<span class="cm-property">Notify</span>({ <span class="cm-property">data</span>: {<span class="cm-property">single</span>: <span class="cm-atom">true</span>} });
     },
     <span class="cm-property">number</span>: <span class="cm-number">1</span>,
     <span class="cm-property">show</span>: <span class="cm-keyword">function</span>(<span class="cm-def">state</span>) {
-        <span class="cm-keyword">this</span>.<span class="cm-property">toast</span>[<span class="cm-variable-2">state</span>](<span class="cm-string">&#39;message &#39;</span> <span class="cm-operator">+</span> <span class="cm-keyword">this</span>.<span class="cm-property">number</span>);
+        <span class="cm-keyword">this</span>.<span class="cm-property">notify</span>[<span class="cm-variable-2">state</span>](<span class="cm-string">&#39;message &#39;</span> <span class="cm-operator">+</span> <span class="cm-keyword">this</span>.<span class="cm-property">number</span>, <span class="cm-string">&#39;Notify&#39;</span>);
         <span class="cm-keyword">this</span>.<span class="cm-property">number</span><span class="cm-operator">++</span>;
     }
 });
@@ -147,13 +151,13 @@
         <h2 id="API">API</h2>
 
 <h3 id="Class">Class</h3>
-<h4>Toast</h4>
-<p>继承自<strong>Component</strong>。</p>
+<h4>Notify</h4>
+<p>继承自<strong>Toast</strong>。</p>
 <p></p>
 <div id="j-class"></div>
 
 <h3 id="Options">Options</h3>
-<h4>new Toast()</h4>
+<h4>new Notify()</h4>
 <table>
     <thead>
         <tr><th width="24%">参数</th><th width="16%">类型</th><th width="16%">默认值</th><th width="18%">数据流向</th><th width="26%">描述</th></tr>
@@ -163,9 +167,9 @@
             
             <tr><td class="f-wsn"><code>data</code></td><td class="f-wsn">object</td><td class="f-wsn"></td><td class="f-tac"></td><td>绑定属性</td></tr>
             
-            <tr><td class="f-wsn"><code>data.position</code></td><td class="f-wsn">string</td><td class="f-wsn"><code>&#39;top-center&#39;</code></td><td class="f-tac">outside  =&gt; inside</td><td>消息提示的位置，可选参数：`top-center`、`top-left`、`top-right`、`bottom-center`、`bottom-left`、`bottom-right`、`static`</td></tr>
+            <tr><td class="f-wsn"><code>data.position</code></td><td class="f-wsn">string</td><td class="f-wsn"><code>&#39;top-right&#39;</code></td><td class="f-tac">outside  =&gt; inside</td><td>通知的位置，可选参数：`top-center`、`top-left`、`top-right`、`bottom-center`、`bottom-left`、`bottom-right`、`static`</td></tr>
             
-            <tr><td class="f-wsn"><code>data.duration</code></td><td class="f-wsn">number</td><td class="f-wsn"><code>2000</code></td><td class="f-tac">outside  =&gt; inside</td><td>每条消息默认的停留毫秒数，如果为0，则表示消息常驻不消失。</td></tr>
+            <tr><td class="f-wsn"><code>data.duration</code></td><td class="f-wsn">number</td><td class="f-wsn"><code>3000</code></td><td class="f-tac">outside  =&gt; inside</td><td>每条通知默认的停留毫秒数，如果为0，则表示通知常驻不消失。</td></tr>
             
             <tr><td class="f-wsn"><code>data.single</code></td><td class="f-wsn">boolean</td><td class="f-wsn"><code>false</code></td><td class="f-tac">outside  =&gt; inside</td><td>是否始终显示一条</td></tr>
             
@@ -182,8 +186,8 @@
     <h3 id="Methods">Methods</h3>
     
     
-    <h4>toast.show(text[, duration][, state])</h4>
-    <p>弹出一个消息</p>
+    <h4>notify.show(content[, title][, duration][, state])</h4>
+    <p>弹出一个通知</p>
     <table>
         <thead>
             <tr><th width="25%">参数</th><th width="25%">类型</th><th width="25%">默认值</th><th width="25%">描述</th></tr>
@@ -191,11 +195,13 @@
         <tbody>
             
                 
-                <tr><td class="f-wsn"><code>text</code></td><td class="f-wsn">string</td><td class="f-wsn"><code>&#39;&#39;</code></td><td>消息内容</td></tr>
+                <tr><td class="f-wsn"><code>content</code></td><td class="f-wsn">string</td><td class="f-wsn"><code>&#39;&#39;</code></td><td>通知内容</td></tr>
                 
-                <tr><td class="f-wsn"><code>duration</code></td><td class="f-wsn">number</td><td class="f-wsn"><code>toast.duration</code></td><td>该条消息的停留毫秒数。如果为0，则表示消息常驻不消失。如果不填，则使用toast默认的duration。</td></tr>
+                <tr><td class="f-wsn"><code>title</code></td><td class="f-wsn">string</td><td class="f-wsn"><code>&#39;&#39;</code></td><td>通知标题</td></tr>
                 
-                <tr><td class="f-wsn"><code>state</code></td><td class="f-wsn">string</td><td class="f-wsn"><code>&#39;&#39;</code></td><td>消息状态，可选参数：`info`、`success`、`warning`、`error`</td></tr>
+                <tr><td class="f-wsn"><code>duration</code></td><td class="f-wsn">number</td><td class="f-wsn"><code>notify.duration</code></td><td>该条通知的停留毫秒数。如果为0，则表示通知常驻不消失。如果不填，则使用notify默认的duration。</td></tr>
+                
+                <tr><td class="f-wsn"><code>state</code></td><td class="f-wsn">string</td><td class="f-wsn"><code>&#39;&#39;</code></td><td>通知状态，可选参数：`info`、`success`、`warning`、`error`</td></tr>
                 
             
         </tbody>
@@ -204,14 +210,14 @@
         </thead>
         <tbody>
             
-                <tr><td class="f-wsn"><code>item</code></td><td class="f-wsn">object</td><td colspan="2">返回弹出的消息项</td></tr>
+                <tr><td class="f-wsn"><code>item</code></td><td class="f-wsn">object</td><td colspan="2">返回弹出的通知项</td></tr>
             
         </tbody>
     </table>
     
     
-    <h4>toast.close(item)</h4>
-    <p>关闭某条消息</p>
+    <h4>notify.close(item)</h4>
+    <p>关闭某条通知</p>
     <table>
         <thead>
             <tr><th width="25%">参数</th><th width="25%">类型</th><th width="25%">默认值</th><th width="25%">描述</th></tr>
@@ -219,7 +225,7 @@
         <tbody>
             
                 
-                <tr><td class="f-wsn"><code>item</code></td><td class="f-wsn">object</td><td class="f-wsn"></td><td>需要关闭的消息项</td></tr>
+                <tr><td class="f-wsn"><code>item</code></td><td class="f-wsn">object</td><td class="f-wsn"></td><td>需要关闭的通知项</td></tr>
                 
             
         </tbody>
@@ -234,8 +240,8 @@
     </table>
     
     
-    <h4>toast.closeAll()</h4>
-    <p>关闭所有消息</p>
+    <h4>notify.closeAll()</h4>
+    <p>关闭所有通知</p>
     <table>
         <thead>
             <tr><th width="25%">参数</th><th width="25%">类型</th><th width="25%">默认值</th><th width="25%">描述</th></tr>
@@ -256,8 +262,8 @@
     </table>
     
     
-    <h4>toast.[info|success|warning|error](text[, duration])</h4>
-    <p>弹出特殊类型的消息。为show方法的简写方式。</p>
+    <h4>notify.[info|success|warning|error](content[, title][, duration])</h4>
+    <p>弹出特殊类型的通知。为show方法的简写方式。</p>
     <table>
         <thead>
             <tr><th width="25%">参数</th><th width="25%">类型</th><th width="25%">默认值</th><th width="25%">描述</th></tr>
@@ -265,9 +271,11 @@
         <tbody>
             
                 
-                <tr><td class="f-wsn"><code>text</code></td><td class="f-wsn">string</td><td class="f-wsn"><code>&#39;&#39;</code></td><td>消息内容</td></tr>
+                <tr><td class="f-wsn"><code>content</code></td><td class="f-wsn">string</td><td class="f-wsn"><code>&#39;&#39;</code></td><td>通知内容</td></tr>
                 
-                <tr><td class="f-wsn"><code>duration</code></td><td class="f-wsn">number</td><td class="f-wsn"><code>toast.duration</code></td><td>该条消息的停留毫秒数。如果为0，则表示消息常驻不消失。如果不填，则使用toast默认的duration。</td></tr>
+                <tr><td class="f-wsn"><code>title</code></td><td class="f-wsn">string</td><td class="f-wsn"><code>&#39;&#39;</code></td><td>通知标题</td></tr>
+                
+                <tr><td class="f-wsn"><code>duration</code></td><td class="f-wsn">number</td><td class="f-wsn"><code>toast.duration</code></td><td>该条通知的停留毫秒数。如果为0，则表示通知常驻不消失。如果不填，则使用toast默认的duration。</td></tr>
                 
             
         </tbody>
@@ -285,153 +293,11 @@
 <div id="j-methods"></div>
 
 
-    <h3 id="Static-Methods">Static Methods</h3>
-    
-    
-    <h4>Toast.show(text[, duration][, state])</h4>
-    <p>弹出一个消息</p>
-    <table>
-        <thead>
-            <tr><th width="25%">参数</th><th width="25%">类型</th><th width="25%">默认值</th><th width="25%">描述</th></tr>
-        </thead>
-        <tbody>
-            
-                
-                <tr><td class="f-wsn"><code>text</code></td><td class="f-wsn">string</td><td class="f-wsn"><code>&#39;&#39;</code></td><td>消息内容</td></tr>
-                
-                <tr><td class="f-wsn"><code>duration</code></td><td class="f-wsn">number</td><td class="f-wsn"><code>toast.duration</code></td><td>该条消息的停留毫秒数。如果为0，则表示消息常驻不消失。如果不填，则使用toast默认的duration。</td></tr>
-                
-                <tr><td class="f-wsn"><code>state</code></td><td class="f-wsn">string</td><td class="f-wsn"><code>&#39;&#39;</code></td><td>消息状态，可选参数：`info`、`success`、`warning`、`error`</td></tr>
-                
-            
-        </tbody>
-        <thead>
-            <tr><th width="25%">返回值</th><th width="25%">类型</th><th width="50%" colspan="2">描述</th></tr>
-        </thead>
-        <tbody>
-            
-                <tr><td class="f-wsn"><code>item</code></td><td class="f-wsn">object</td><td colspan="2">返回弹出的消息项</td></tr>
-            
-        </tbody>
-    </table>
-    
-    
-    <h4>Toast.[info|success|warning|error](text[, duration])</h4>
-    <p>弹出特殊类型的消息。为show方法的简写方式。</p>
-    <table>
-        <thead>
-            <tr><th width="25%">参数</th><th width="25%">类型</th><th width="25%">默认值</th><th width="25%">描述</th></tr>
-        </thead>
-        <tbody>
-            
-                
-                <tr><td class="f-wsn"><code>text</code></td><td class="f-wsn">string</td><td class="f-wsn"><code>&#39;&#39;</code></td><td>消息内容</td></tr>
-                
-                <tr><td class="f-wsn"><code>duration</code></td><td class="f-wsn">number</td><td class="f-wsn"><code>toast.duration</code></td><td>该条消息的停留毫秒数。如果为0，则表示消息常驻不消失。如果不填，则使用toast默认的duration。</td></tr>
-                
-            
-        </tbody>
-        <thead>
-            <tr><th width="25%">返回值</th><th width="25%">类型</th><th width="50%" colspan="2">描述</th></tr>
-        </thead>
-        <tbody>
-            
-                <tr><td class="f-tac" colspan="4">无返回值</td></tr>
-            
-        </tbody>
-    </table>
-    
-    
-    <h4>Toast.close(item)</h4>
-    <p>关闭某条消息</p>
-    <table>
-        <thead>
-            <tr><th width="25%">参数</th><th width="25%">类型</th><th width="25%">默认值</th><th width="25%">描述</th></tr>
-        </thead>
-        <tbody>
-            
-                
-                <tr><td class="f-wsn"><code>item</code></td><td class="f-wsn">object</td><td class="f-wsn"></td><td>需要关闭的消息对象</td></tr>
-                
-            
-        </tbody>
-        <thead>
-            <tr><th width="25%">返回值</th><th width="25%">类型</th><th width="50%" colspan="2">描述</th></tr>
-        </thead>
-        <tbody>
-            
-                <tr><td class="f-tac" colspan="4">无返回值</td></tr>
-            
-        </tbody>
-    </table>
-    
-    
-    <h4>Toast.closeAll()</h4>
-    <p>关闭所有消息</p>
-    <table>
-        <thead>
-            <tr><th width="25%">参数</th><th width="25%">类型</th><th width="25%">默认值</th><th width="25%">描述</th></tr>
-        </thead>
-        <tbody>
-            
-                <tr><td class="f-tac" colspan="4">无参数</td></tr>
-            
-        </tbody>
-        <thead>
-            <tr><th width="25%">返回值</th><th width="25%">类型</th><th width="50%" colspan="2">描述</th></tr>
-        </thead>
-        <tbody>
-            
-                <tr><td class="f-tac" colspan="4">无返回值</td></tr>
-            
-        </tbody>
-    </table>
-    
-
 <div id="j-staticMethods"></div>
 
 
 <div id="j-inheritedMethods"></div>
 
-
-    <h3 id="Events">Events</h3>
-    
-    
-    <h4>toast.$on('show')</h4>
-    <p>弹出一个消息时触发</p>
-    <table>
-        <thead>
-            <tr><th width="33%">属性</th><th width="33%">类型</th><th width="33%">描述</th></tr>
-        </thead>
-        <tbody>
-            
-                
-                <tr><td class="f-wsn"><code>sender</code></td><td class="f-wsn">object</td><td class="f-wsn">事件发送对象</td></tr>
-                
-                <tr><td class="f-wsn"><code>item</code></td><td class="f-wsn">object</td><td class="f-wsn">弹出的消息项</td></tr>
-                
-            
-        </tbody>
-    </table>
-    
-    
-    <h4>toast.$on('close')</h4>
-    <p>关闭某条消息时触发</p>
-    <table>
-        <thead>
-            <tr><th width="33%">属性</th><th width="33%">类型</th><th width="33%">描述</th></tr>
-        </thead>
-        <tbody>
-            
-                
-                <tr><td class="f-wsn"><code>sender</code></td><td class="f-wsn">object</td><td class="f-wsn">事件发送对象</td></tr>
-                
-                <tr><td class="f-wsn"><code>item</code></td><td class="f-wsn">object</td><td class="f-wsn">关闭了的消息对象</td></tr>
-                
-            
-        </tbody>
-    </table>
-    
 
 <div id="j-events"></div>
 
@@ -461,11 +327,14 @@
 
 var index = 0;
 (function (index) {
-    var template = '<button class="u-btn u-btn-primary" on-click={this.show()}>Toast</button>';
+    var template = '<button class="u-btn" on-click={this.show()}>Default</button>\n<button class="u-btn" on-click={this.showWithoutTitle()}>Without Title</button>';
     var component = new RGUI.Component({
         template: template,
         show: function show() {
-            RGUI.Toast.show('a message');
+            RGUI.Notify.show('This is a message.', 'Notify');
+        },
+        showWithoutTitle: function showWithoutTitle() {
+            RGUI.Notify.show('This is a message without title.');
         }
     });
     component && component.$inject($$(".m-example")[index]);
@@ -475,7 +344,7 @@ var index = 0;
     var component = new RGUI.Component({
         template: template,
         show: function show(state) {
-            RGUI.Toast[state](state + ' message');
+            RGUI.Notify[state](state + ' message', 'Notify');
         }
     });
     component && component.$inject($$(".m-example")[index]);
@@ -485,21 +354,21 @@ var index = 0;
     var component = new RGUI.Component({
         template: template,
         config: function config() {
-            this.toasts = [new RGUI.Toast({ data: { position: 'top-center' } }), new RGUI.Toast({ data: { position: 'top-left' } }), new RGUI.Toast({ data: { position: 'top-right' } }), new RGUI.Toast({ data: { position: 'bottom-center' } }), new RGUI.Toast({ data: { position: 'bottom-left' } }), new RGUI.Toast({ data: { position: 'bottom-right' } })];
+            this.notifies = [new RGUI.Notify({ data: { position: 'top-center' } }), new RGUI.Notify({ data: { position: 'top-left' } }), new RGUI.Notify({ data: { position: 'top-right' } }), new RGUI.Notify({ data: { position: 'bottom-center' } }), new RGUI.Notify({ data: { position: 'bottom-left' } }), new RGUI.Notify({ data: { position: 'bottom-right' } })];
         },
         show: function show(index) {
-            var toast = this.toasts[index];
-            toast.show('position: ' + toast.data.position);
+            var notify = this.notifies[index];
+            notify.show('position: ' + notify.data.position, 'Notify');
         }
     });
     component && component.$inject($$(".m-example")[index]);
 })(index++);
 (function (index) {
-    var template = '<p><button class="u-btn u-btn-primary" on-click={this.show()}>static</button></p>\n<toast ref="toast" position="static" duration="0" />';
+    var template = '<p><button class="u-btn u-btn-primary" on-click={this.show()}>static</button></p>\n<notify ref="notify" position="static" duration="0" />';
     var component = new RGUI.Component({
         template: template,
         show: function show() {
-            this.$refs.toast.show('static toast');
+            this.$refs.notify.show('static notify');
         }
     });
     component && component.$inject($$(".m-example")[index]);
@@ -509,7 +378,7 @@ var index = 0;
     var component = new RGUI.Component({
         template: template,
         show: function show(duration) {
-            RGUI.Toast.show('duration: ' + duration + ' ms', duration);
+            RGUI.Notify.show('duration: ' + duration + ' ms', 'Notify', duration);
         }
     });
     component && component.$inject($$(".m-example")[index]);
@@ -519,12 +388,12 @@ var index = 0;
     var component = new RGUI.Component({
         template: template,
         config: function config() {
-            this.toast = new RGUI.Toast({ data: { single: true } });
+            this.notify = new RGUI.Notify({ data: { single: true } });
         },
 
         number: 1,
         show: function show(state) {
-            this.toast[state]('message ' + this.number);
+            this.notify[state]('message ' + this.number, 'Notify');
             this.number++;
         }
     });
