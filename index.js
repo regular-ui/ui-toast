@@ -1,4 +1,4 @@
-import Toast from './toast';
-import Notify from './notify';
+import Toast from './src/toast';
+import Notify from './src/notify';
 
 export { Toast, Notify };

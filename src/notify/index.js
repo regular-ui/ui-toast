@@ -3,8 +3,8 @@ import template from './index.rgl';
 
 /**
  * @class Notify
- * @extend Toast
- * @param {object}                  options.data                     =  绑定属性
+ * @extends Toast
+ * @param {Object}                  options.data                     =  绑定属性
  * @param {string='top-right'}      options.data.position            => 通知的位置，可选参数：`top-center`、`top-left`、`top-right`、`bottom-center`、`bottom-left`、`bottom-right`、`static`
  * @param {number=3000}             options.data.duration            => 每条通知默认的停留毫秒数，如果为0，则表示通知常驻不消失。
  * @param {boolean=false}           options.data.single              => 是否始终显示一条

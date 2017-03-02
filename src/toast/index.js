@@ -3,8 +3,8 @@ import template from './index.rgl';
 
 /**
  * @class Toast
- * @extend Component
- * @param {object}                  options.data                     =  绑定属性
+ * @extends Component
+ * @param {Object}                  options.data                     =  绑定属性
  * @param {string='top-center'}     options.data.position            => 消息提示的位置，可选参数：`top-center`、`top-left`、`top-right`、`bottom-center`、`bottom-left`、`bottom-right`、`static`
  * @param {number=2000}             options.data.duration            => 每条消息默认的停留毫秒数，如果为0，则表示消息常驻不消失。
  * @param {boolean=false}           options.data.single              => 是否始终显示一条
