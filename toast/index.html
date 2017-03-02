@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <link rel="icon" href="https://regular-ui.github.io/v0.2/img/favicon.ico" type="image/x-icon">
 <link rel="shortcut icon" href="https://regular-ui.github.io/v0.2/img/favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="https://regular-ui.github.io/v0.2/css/doc.default.min.css">
+<link rel="stylesheet" href="https://regular-ui.github.io/v0.2/css/docs.default.min.css">
 <link rel="stylesheet" href="../css/index.css">
 <!--[if lt IE9]>
 <script>
@@ -146,36 +146,38 @@
 
         <h2 id="API">API</h2>
 
-<h3 id="Class">Class</h3>
-<h4>Toast</h4>
-<p>继承自<strong>Component</strong>。</p>
-<p></p>
-<div id="j-class"></div>
 
-<h3 id="Options">Options</h3>
-<h4>new Toast()</h4>
-<table>
-    <thead>
-        <tr><th width="24%">参数</th><th width="16%">类型</th><th width="16%">默认值</th><th width="18%">数据流向</th><th width="26%">描述</th></tr>
-    </thead>
-    <tbody>
-        
+    <h3 id="Class">Class</h3>
+    <h4>Toast</h4>
+    <p>继承自<strong></strong>。</p>
+    <p></p>
+    <div id="j-class"></div>
+
+    <h3 id="Options">Options</h3>
+    <h4>new Toast()</h4>
+    <table>
+        <thead>
+            <tr><th width="24%">参数</th><th width="16%">类型</th><th width="16%">默认值</th><th width="18%">数据流向</th><th width="26%">描述</th></tr>
+        </thead>
+        <tbody>
             
-            <tr><td class="f-wsn"><code>data</code></td><td class="f-wsn">object</td><td class="f-wsn"></td><td class="f-tac"></td><td>绑定属性</td></tr>
+                
+                <tr><td class="f-wsn"><code>data</code></td><td class="f-wsn">Object</td><td class="f-wsn"></td><td class="f-tac"></td><td>绑定属性</td></tr>
+                
+                <tr><td class="f-wsn"><code>data.position</code></td><td class="f-wsn">string</td><td class="f-wsn"><code>&#39;top-center&#39;</code></td><td class="f-tac">outside  =&gt; inside</td><td>消息提示的位置，可选参数：`top-center`、`top-left`、`top-right`、`bottom-center`、`bottom-left`、`bottom-right`、`static`</td></tr>
+                
+                <tr><td class="f-wsn"><code>data.duration</code></td><td class="f-wsn">number</td><td class="f-wsn"><code>2000</code></td><td class="f-tac">outside  =&gt; inside</td><td>每条消息默认的停留毫秒数，如果为0，则表示消息常驻不消失。</td></tr>
+                
+                <tr><td class="f-wsn"><code>data.single</code></td><td class="f-wsn">boolean</td><td class="f-wsn"><code>false</code></td><td class="f-tac">outside  =&gt; inside</td><td>是否始终显示一条</td></tr>
+                
+                <tr><td class="f-wsn"><code>data.visible</code></td><td class="f-wsn">boolean</td><td class="f-wsn"><code>true</code></td><td class="f-tac">outside  =&gt; inside</td><td>是否显示</td></tr>
+                
+                <tr><td class="f-wsn"><code>data.class</code></td><td class="f-wsn">string</td><td class="f-wsn"><code>&#39;&#39;</code></td><td class="f-tac">outside  =&gt; inside</td><td>补充class</td></tr>
+                
             
-            <tr><td class="f-wsn"><code>data.position</code></td><td class="f-wsn">string</td><td class="f-wsn"><code>&#39;top-center&#39;</code></td><td class="f-tac">outside  =&gt; inside</td><td>消息提示的位置，可选参数：`top-center`、`top-left`、`top-right`、`bottom-center`、`bottom-left`、`bottom-right`、`static`</td></tr>
-            
-            <tr><td class="f-wsn"><code>data.duration</code></td><td class="f-wsn">number</td><td class="f-wsn"><code>2000</code></td><td class="f-tac">outside  =&gt; inside</td><td>每条消息默认的停留毫秒数，如果为0，则表示消息常驻不消失。</td></tr>
-            
-            <tr><td class="f-wsn"><code>data.single</code></td><td class="f-wsn">boolean</td><td class="f-wsn"><code>false</code></td><td class="f-tac">outside  =&gt; inside</td><td>是否始终显示一条</td></tr>
-            
-            <tr><td class="f-wsn"><code>data.visible</code></td><td class="f-wsn">boolean</td><td class="f-wsn"><code>true</code></td><td class="f-tac">outside  =&gt; inside</td><td>是否显示</td></tr>
-            
-            <tr><td class="f-wsn"><code>data.class</code></td><td class="f-wsn">string</td><td class="f-wsn"><code>&#39;&#39;</code></td><td class="f-tac">outside  =&gt; inside</td><td>补充class</td></tr>
-            
-        
-    </tbody>
-</table>
+        </tbody>
+    </table>
+
 <div id="j-options"></div>
 
 
@@ -505,7 +507,7 @@ var index = 0;
     component && component.$inject($$(".m-example")[index]);
 })(index++);
 (function (index) {
-    var template = '<button class="u-btn" on-click={this.show(500)}>0.5s</button>\n<button class="u-btn" on-click={this.show(1000)}>1s</button>\n<button class="u-btn" on-click={this.show(2000)}>2s</button>\n<button class="u-btn" on-click={this.show(0)}>常驻</button>';
+    var template = '<button class="u-btn" on-click={this.show(500)}>0.5s</button>\n<button class="u-btn" on-click={this.show(1000)}>1s</button>\n<button class="u-btn" on-click={this.show(2000)}>2s</button>\n<button class="u-btn" on-click={this.show(0)}>\u5E38\u9A7B</button>';
     var component = new RGUI.Component({
         template: template,
         show: function show(duration) {
